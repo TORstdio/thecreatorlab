@@ -140,6 +140,17 @@ html:not(.lenis) {
   }
 }
 
+/* En móvil el grain se siente más denso (pantalla chica + pixel ratio):
+   bajarlo solo ahí; desktop queda igual */
+@media (max-width: 767px) {
+  .hero-overlay::after {
+    opacity: 0.2;
+  }
+  .hero-overlay::before {
+    opacity: 0.45;
+  }
+}
+
 /* ---------- Marquee (CSS only) ---------- */
 
 .marquee-track {
