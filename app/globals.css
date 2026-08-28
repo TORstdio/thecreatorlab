@@ -1,26 +1,272 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-purple: #5c5af6;
+  --color-pink: #c286f8;
+  --color-mint: #74d1b4;
+  --color-butter: #e9e47a;
+  --color-blue: #57a6db;
+  --color-canvas: #f5f2e9;
+  --color-ink: #1c1a17;
+  --color-muted: #55504a;
+
+  --font-sans: var(--font-archivo), "Helvetica Neue", Arial, sans-serif;
+  --font-display: var(--font-archivo-black), "Arial Black", sans-serif;
+  --font-narrow: var(--font-archivo-narrow), "Arial Narrow", Arial, sans-serif;
+  --font-serif-d: var(--font-instrument), Georgia, serif;
+  --font-script: var(--font-pinyon), "Snell Roundhand", cursive;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* ---------- Base ---------- */
+
+/* Smooth nativo solo cuando Lenis no está activo (no-JS / reduced motion) */
+html:not(.lenis) {
+  scroll-behavior: smooth;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+::selection {
+  background: var(--color-butter);
+  color: var(--color-ink);
+}
+
+/* ---------- Outline (stroke) display text ---------- */
+
+.text-stroke-cream {
+  -webkit-text-stroke: 2px var(--color-canvas);
+  color: transparent;
+}
+
+@media (max-width: 640px) {
+  .text-stroke-cream {
+    -webkit-text-stroke-width: 1.2px;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ---------- Grain overlay (riso texture) ---------- */
+
+.grain {
+  position: relative;
+  isolation: isolate;
+}
+
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.5;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.09 0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.grain > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* ---------- Hero: overlay oscuro + grain vivo (steps, sin WebGL) ---------- */
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: rgba(20, 18, 40, 0.04);
+  overflow: hidden;
+}
+
+/* Capa riso: malla halftone (tela impresa) + manchas de tinta irregulares */
+.hero-overlay::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='900' height='900'%3E%3Cfilter id='b'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.0045' numOctaves='4' seed='7'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0.5 0 0 0 -0.18'/%3E%3C/filter%3E%3Crect width='900' height='900' filter='url(%23b)'/%3E%3C/svg%3E");
+  background-size: 140% 140%;
+  background-position: center;
+  mix-blend-mode: soft-light;
+  opacity: 0.55;
+}
+
+/* El contenido del hero queda por encima del grain */
+.hero-overlay ~ * {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-overlay::after {
+  content: "";
+  position: absolute;
+  inset: -100%;
+  opacity: 0.35;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='s'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' seed='11' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.08 2.4 0 0 0 -1.1'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='discrete' tableValues='0 1'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23s)'/%3E%3C/svg%3E");
+  animation: grain-jump 0.9s steps(8) infinite;
+  will-change: transform;
+}
+
+@keyframes grain-jump {
+  0% {
+    transform: translate(0, 0);
+  }
+  12.5% {
+    transform: translate(-4%, -7%);
+  }
+  25% {
+    transform: translate(3%, -12%);
+  }
+  37.5% {
+    transform: translate(-6%, 4%);
+  }
+  50% {
+    transform: translate(8%, 9%);
+  }
+  62.5% {
+    transform: translate(-9%, -3%);
+  }
+  75% {
+    transform: translate(5%, 12%);
+  }
+  87.5% {
+    transform: translate(-3%, 8%);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-overlay::after {
+    animation: none;
+  }
+}
+
+/* ---------- Marquee (CSS only) ---------- */
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 22s linear infinite;
+}
+
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* ---------- FAQ (native <details>, no JS) ---------- */
+
+details.faq-item summary {
+  list-style: none;
+  cursor: pointer;
+}
+
+details.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+details.faq-item .faq-plus {
+  transition: transform 0.25s ease;
+}
+
+details.faq-item[open] .faq-plus {
+  transform: rotate(45deg);
+}
+
+/* ---------- Sticker hover ---------- */
+
+.sticker {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+@media (hover: hover) {
+  .sticker:hover {
+    transform: rotate(0deg) translate(-2px, -2px);
+    box-shadow: 6px 6px 0 0 var(--color-ink);
+  }
+}
+
+/* ---------- Buttons ---------- */
+
+.btn-hard {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+@media (hover: hover) {
+  .btn-hard:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 0 var(--color-ink);
+  }
+  .btn-hard:active {
+    transform: translate(2px, 2px);
+    box-shadow: 0 0 0 0 var(--color-ink);
+  }
+}
+
+/* ---------- Below-the-fold rendering hint ---------- */
+
+.cv-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 800px;
+}
+
+/* ---------- Scrollbar oculta (carruseles) ---------- */
+
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* ---------- Cursor personalizado ---------- */
+
+@media (pointer: fine) {
+  .custom-cursor,
+  .custom-cursor a,
+  .custom-cursor button,
+  .custom-cursor summary,
+  .custom-cursor * {
+    cursor: none !important;
+  }
+
+  /* El <dialog> vive en el top layer (encima de todo z-index):
+     ahí se restaura el cursor del sistema y se oculta el círculo */
+  .custom-cursor dialog,
+  .custom-cursor dialog * {
+    cursor: auto !important;
+  }
+  .custom-cursor dialog button,
+  .custom-cursor dialog a {
+    cursor: pointer !important;
+  }
+  .custom-cursor:has(dialog[open]) .cursor-dot,
+  .custom-cursor:has(dialog[open]) .cursor-ring {
+    opacity: 0 !important;
+  }
+}
+
+/* ---------- Motion safety ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .marquee-track {
+    animation: none;
+  }
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
 }
