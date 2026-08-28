@@ -65,9 +65,18 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="es"
+      suppressHydrationWarning
       className={`${archivo.variable} ${archivoBlack.variable} ${archivoNarrow.variable} ${instrumentSerif.variable} ${pinyonScript.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-canvas text-ink font-sans">
+        {/* Antes del primer pintado: si habrá animación de intro, ocultar el
+            hero via CSS (.motion) para evitar el flash de contenido */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "try{if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('motion')}catch(e){}",
+          }}
+        />
         {children}
       </body>
     </html>

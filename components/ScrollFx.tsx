@@ -62,37 +62,41 @@ export default function ScrollFx() {
       }
 
       const ctx = gsap.context(() => {
-        // Intro del hero
+        // Intro del hero (fromTo: el CSS .motion los deja en opacity 0
+        // antes del primer pintado y GSAP entrega el estado final)
         gsap
           .timeline({ defaults: { ease: "power3.out" } })
-          .from('[data-hero="masthead"]', {
-            opacity: 0,
-            y: -12,
-            duration: 0.6,
-            stagger: 0.08,
-          })
-          .from(
+          .fromTo(
+            '[data-hero="masthead"]',
+            { opacity: 0, y: -12 },
+            { opacity: 1, y: 0, duration: 0.6, stagger: 0.08 },
+          )
+          .fromTo(
             '[data-hero="line"]',
-            { yPercent: 60, opacity: 0, duration: 0.9, stagger: 0.12 },
+            { yPercent: 60, opacity: 0 },
+            { yPercent: 0, opacity: 1, duration: 0.9, stagger: 0.12 },
             "-=0.3",
           )
-          .from(
+          .fromTo(
             '[data-hero="stickers"] > *',
+            { scale: 0, rotation: 12, opacity: 0 },
             {
-              scale: 0,
-              rotation: 12,
+              scale: 1,
+              rotation: 0,
+              opacity: 1,
               duration: 0.5,
               stagger: 0.1,
               ease: "back.out(2)",
-              // Al terminar, soltar el transform inline para que
-              // la rotación CSS de cada sticker vuelva a aplicar
+              // Soltar solo el transform (la opacidad inline se queda en 1);
+              // así la rotación CSS de cada sticker vuelve a aplicar
               clearProps: "transform,rotate,scale",
             },
             "-=0.4",
           )
-          .from(
+          .fromTo(
             '[data-hero="fade"]',
-            { opacity: 0, y: 24, duration: 0.7, stagger: 0.1 },
+            { opacity: 0, y: 24 },
+            { opacity: 1, y: 0, duration: 0.7, stagger: 0.1 },
             "-=0.2",
           );
 

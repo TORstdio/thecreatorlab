@@ -151,6 +151,26 @@ html:not(.lenis) {
   }
 }
 
+/* ---------- Intro del hero sin flash ----------
+   La clase .motion se agrega ANTES del primer pintado (script inline)
+   solo cuando la animación va a correr; GSAP entrega la opacidad final */
+
+.motion [data-hero="masthead"],
+.motion [data-hero="line"],
+.motion [data-hero="fade"],
+.motion [data-hero="stickers"] > * {
+  opacity: 0;
+  /* Red de seguridad: si el JS de animación no llegara a correr,
+     el contenido se revela solo pasados 2.5s */
+  animation: hero-safety 0.4s ease-out 2.5s forwards;
+}
+
+@keyframes hero-safety {
+  to {
+    opacity: 1;
+  }
+}
+
 /* ---------- Marquee (CSS only) ---------- */
 
 .marquee-track {
