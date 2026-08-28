@@ -155,7 +155,21 @@ export default function ScrollFx() {
         once: true,
       });
 
+      // La página cambia de altura (acordeones de módulos, FAQ, cards):
+      // recalcular el límite de Lenis y los triggers cuando eso pase
+      let resizeDebounce = 0;
+      const heightObserver = new ResizeObserver(() => {
+        window.clearTimeout(resizeDebounce);
+        resizeDebounce = window.setTimeout(() => {
+          lenis?.resize();
+          ScrollTrigger.refresh();
+        }, 250);
+      });
+      heightObserver.observe(document.body);
+
       cleanup = () => {
+        heightObserver.disconnect();
+        window.clearTimeout(resizeDebounce);
         if (onAnchorClick) document.removeEventListener("click", onAnchorClick);
         ctx.revert();
         if (tick) gsap.ticker.remove(tick);
