@@ -1,4 +1,4 @@
-import { VIDEO_PRESENTACION_URL, VIDEO_POSTER } from "@/lib/media";
+import VideoLightbox from "@/components/VideoLightbox";
 
 export default function VideoBand() {
   return (
@@ -9,22 +9,8 @@ export default function VideoBand() {
       aria-label="Presentación del curso"
     >
       <div className="flex flex-col lg:flex-row items-center gap-12">
-        <div
-          data-reveal
-          data-cursor="purple"
-          className="relative w-full lg:w-[54%] shrink-0 rounded-lg border-2 border-canvas overflow-hidden bg-ink"
-        >
-          {/* preload="none": no descarga nada hasta que el usuario da play;
-              el poster local pinta la miniatura al instante */}
-          <video
-            controls
-            playsInline
-            preload="none"
-            poster={VIDEO_POSTER}
-            src={VIDEO_PRESENTACION_URL}
-            className="w-full aspect-video object-cover"
-            aria-label="Video de presentación de The Creator Playbook"
-          />
+        <div data-reveal className="relative w-full lg:w-[54%] shrink-0">
+          <VideoLightbox />
         </div>
 
         <div className="flex flex-col gap-4.5">
