@@ -1,5 +1,6 @@
 import InstructorCard from "@/components/InstructorCard";
 import carolina from "@/public/instructores/carolina-sandoval.webp";
+import gabriela from "@/public/instructores/gabriela-gonzalez.webp";
 import daniela from "@/public/instructores/daniela-palacios.webp";
 import eduardo from "@/public/instructores/eduardo-nunez.webp";
 import ilse from "@/public/instructores/ilse-guerra.webp";
@@ -29,6 +30,7 @@ const instructores: Instructor[] = [
   },
   {
     name: "Gabriela González",
+    photo: gabriela,
     summary: "+9 años en derecho corporativo aplicado al Influencer Marketing.",
     highlights: [
       "+9 años de experiencia en el área legal, con especialización en derecho corporativo.",
