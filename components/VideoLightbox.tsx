@@ -65,7 +65,7 @@ export default function VideoLightbox() {
           if (e.target === dialogRef.current) close();
         }}
         aria-label="Video de presentación de The Creator Playbook"
-        className="m-auto w-[min(92vw,1080px)] bg-transparent p-0 backdrop:bg-ink/80 backdrop:backdrop-blur-sm"
+        className="m-auto w-[min(92vw,1080px)] overflow-visible bg-transparent p-0 backdrop:bg-ink/80 backdrop:backdrop-blur-sm"
       >
         <div className="relative">
           <video
