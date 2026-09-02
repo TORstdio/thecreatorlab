@@ -1,4 +1,9 @@
 import InstructorCard from "@/components/InstructorCard";
+import carolina from "@/public/instructores/carolina-sandoval.webp";
+import daniela from "@/public/instructores/daniela-palacios.webp";
+import eduardo from "@/public/instructores/eduardo-nunez.webp";
+import ilse from "@/public/instructores/ilse-guerra.webp";
+import paulina from "@/public/instructores/paulina-zarur.webp";
 
 type Instructor = {
   name: string;
@@ -6,11 +11,13 @@ type Instructor = {
   highlights: string[];
   photoBg: string;
   fotoColor: string;
+  photo?: import("next/image").StaticImageData;
 };
 
 const instructores: Instructor[] = [
   {
     name: "Carolina Sandoval",
+    photo: carolina,
     summary: "Socia fundadora de Peach Group · +8 años en Influencer Marketing.",
     highlights: [
       "+8 años de experiencia en Influencer Marketing y en la profesionalización de la Creator Economy.",
@@ -33,6 +40,7 @@ const instructores: Instructor[] = [
   },
   {
     name: "Ilse Guerra",
+    photo: ilse,
     summary: "+2,000 campañas negociadas entre marcas y creadores.",
     highlights: [
       "Socia fundadora de Peach Group, especializada en negociación entre marcas y creadores.",
@@ -44,6 +52,7 @@ const instructores: Instructor[] = [
   },
   {
     name: "Paulina P. Zarur",
+    photo: paulina,
     summary: "+10 años en Marketing: Dior, L'Oréal, Netflix, Coca-Cola.",
     highlights: [
       "+10 años de experiencia en Marketing y +6 años especializada en Creator Economy.",
@@ -55,6 +64,7 @@ const instructores: Instructor[] = [
   },
   {
     name: "Daniela Palacios",
+    photo: daniela,
     summary: "Talent Agent Leader en Peach Group · campañas end-to-end para marcas globales.",
     highlights: [
       "5 años de experiencia en Influencer Marketing, trabajando tanto con marcas como con talentos.",
@@ -77,6 +87,7 @@ const instructores: Instructor[] = [
   },
   {
     name: "Eduardo Nuñez",
+    photo: eduardo,
     summary: "Dirige Influencer Marketing en Another, Mejor Agencia de IM en México.",
     highlights: [
       "Lleva más de 10 años trabajando entre briefs, campañas y creadores.",

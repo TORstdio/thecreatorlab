@@ -1,7 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { VIDEO_PRESENTACION_URL, VIDEO_POSTER } from "@/lib/media";
 import camera from "@/public/creators/camera.webp";
 import compass from "@/public/creators/compass.webp";
 import cup from "@/public/creators/cup.webp";
@@ -21,6 +22,9 @@ const SPEED_MS = 160; // cambio rápido tipo comercial
 export default function CreatorReel() {
   const [frame, setFrame] = useState(0);
   const [hovered, setHovered] = useState(false);
+  // El <video> se monta hasta el primer hover (no descarga nada antes)
+  const [videoOn, setVideoOn] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -35,8 +39,15 @@ export default function CreatorReel() {
       href="#video"
       aria-label="Ver el video de presentación"
       data-cursor="purple"
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
+      onMouseEnter={() => {
+        setHovered(true);
+        setVideoOn(true);
+        videoRef.current?.play().catch(() => {});
+      }}
+      onMouseLeave={() => {
+        setHovered(false);
+        videoRef.current?.pause();
+      }}
       className={`relative inline-block h-[110px] shrink-0 transition-[width] duration-300 ease-out ${
         hovered ? "w-[196px]" : "w-[110px]"
       }`}
@@ -56,20 +67,30 @@ export default function CreatorReel() {
         />
       ))}
 
-      {/*
-        Mini video (teaser). Con el asset real: reemplazar por
-        <video muted autoPlay loop playsInline poster=...>.
-      */}
+      {/* Mini video (teaser real, silenciado): aparece en hover */}
       <span
         aria-hidden="true"
-        className={`absolute inset-0 rounded-2xl overflow-hidden border-2 border-canvas bg-[linear-gradient(160deg,#57a6db_0%,#5c5af6_60%,#4a48d8_100%)] flex items-center justify-center transition-opacity duration-200 ${
+        className={`absolute inset-0 rounded-2xl overflow-hidden border-2 border-canvas bg-ink transition-opacity duration-200 ${
           hovered ? "opacity-100" : "opacity-0"
         }`}
       >
-        <span className="size-10 rounded-full bg-canvas flex items-center justify-center shadow-[0_6px_16px_rgba(0,0,0,0.3)]">
+        {videoOn && (
+          <video
+            ref={videoRef}
+            muted
+            loop
+            playsInline
+            autoPlay
+            preload="none"
+            poster={VIDEO_POSTER}
+            src={VIDEO_PRESENTACION_URL}
+            className="size-full object-cover"
+          />
+        )}
+        <span className="absolute bottom-1.5 right-1.5 size-7 rounded-full bg-canvas flex items-center justify-center shadow-[0_4px_10px_rgba(0,0,0,0.3)]">
           <svg
-            width="12"
-            height="14"
+            width="9"
+            height="11"
             viewBox="0 0 12 14"
             fill="#1c1a17"
             aria-hidden="true"

@@ -1,5 +1,6 @@
 "use client";
 
+import Image, { type StaticImageData } from "next/image";
 import { useState } from "react";
 
 type Props = {
@@ -8,6 +9,8 @@ type Props = {
   highlights: string[];
   photoBg: string;
   fotoColor: string;
+  /** Foto real; si falta, se muestra el placeholder de color. */
+  photo?: StaticImageData;
 };
 
 /**
@@ -20,6 +23,7 @@ export default function InstructorCard({
   highlights,
   photoBg,
   fotoColor,
+  photo,
 }: Props) {
   const [open, setOpen] = useState(false);
 
@@ -31,16 +35,27 @@ export default function InstructorCard({
       }}
       className="sticker relative bg-white border-2 border-ink rounded-[14px] overflow-hidden shadow-[4px_4px_0_0_#1c1a17] snap-center shrink-0 w-[82%] max-w-[340px] sm:w-auto sm:max-w-none sm:shrink"
     >
-      {/* Placeholder de foto — reemplazar por next/image con el asset real */}
-      <div
-        className={`${photoBg} aspect-square flex items-center justify-center`}
-      >
-        <span
-          className={`font-narrow font-bold text-xs tracking-[0.16em] ${fotoColor}`}
+      {photo ? (
+        <div className="relative aspect-square">
+          <Image
+            src={photo}
+            alt={`Foto de ${name}`}
+            fill
+            sizes="(max-width: 640px) 82vw, (max-width: 1024px) 50vw, 25vw"
+            className="object-cover"
+          />
+        </div>
+      ) : (
+        <div
+          className={`${photoBg} aspect-square flex items-center justify-center`}
         >
-          [FOTO]
-        </span>
-      </div>
+          <span
+            className={`font-narrow font-bold text-xs tracking-[0.16em] ${fotoColor}`}
+          >
+            [FOTO]
+          </span>
+        </div>
+      )}
       <div className="p-4.5 pb-5 flex flex-col gap-2">
         <h3 className="font-bold text-lg">{name}</h3>
         <p className="text-muted text-[13px] leading-relaxed">{summary}</p>
