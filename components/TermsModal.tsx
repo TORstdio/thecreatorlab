@@ -23,11 +23,12 @@ const SECTIONS: Section[] = [
     ],
   },
   {
-    title: "3. Pagos, Cancelaciones y Reembolsos",
+    title: "3. Garantía y Reembolsos",
     items: [
-      "3.1. Debido a la naturaleza digital de los Productos y al acceso inmediato al contenido, todas las compras son finales.",
-      "3.2. No se realizan devoluciones, cancelaciones, cambios ni reembolsos, salvo que la legislación aplicable establezca lo contrario.",
-      "3.3. En caso de planes de pago, el alumno se compromete a cubrir la totalidad de las mensualidades o parcialidades contratadas conforme a las condiciones aceptadas al momento de la compra.",
+      "3.1. La compra de The Creator Playbook incluye una garantía de 7 días naturales a partir de la fecha de compra, conforme a las políticas de Hotmart.",
+      "3.2. Durante ese plazo, la persona usuaria podrá solicitar su reembolso directamente mediante el proceso habilitado por Hotmart.",
+      "3.3. Una vez concluido el plazo de garantía, no aplican reembolsos ni cancelaciones.",
+      "3.4. Las condiciones de pago, cargos y procesamiento de la compra se rigen por las políticas y términos aplicables de Hotmart.",
     ],
   },
   {

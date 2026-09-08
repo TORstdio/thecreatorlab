@@ -1,4 +1,5 @@
 import { Check } from "@/components/icons";
+import CheckoutLink from "@/components/CheckoutLink";
 
 const beneficios = [
   "4 instructores + invitados de la industria",
@@ -53,20 +54,23 @@ export default function Pricing() {
           <span className="bg-mint text-ink border-2 border-ink rounded-full px-4 py-1.5 font-narrow font-bold text-xs tracking-[0.08em]">
             PRECIO ESPECIAL
           </span>
+          <p className="font-narrow font-bold text-sm tracking-[0.12em] text-canvas/80 line-through">
+            $249 USD
+          </p>
           <p className="font-display text-canvas text-[74px] leading-none">
-            $179
+            $129
             <span className="sr-only"> dólares</span>
           </p>
           <p className="font-narrow font-semibold text-sm tracking-[0.1em] text-canvas/85">
-            USD
+            USD · LANZAMIENTO
           </p>
-          <a
-            href="#inscripcion"
+          <CheckoutLink
+            target="_blank"
             data-cursor="purple"
             className="btn-hard mt-1.5 bg-butter text-ink border-2 border-ink rounded-full px-8 py-[15px] text-base font-bold shadow-[3px_3px_0_0_#1c1a17]"
           >
             Inscribirme
-          </a>
+          </CheckoutLink>
           <p className="font-narrow font-semibold text-xs tracking-[0.08em] text-canvas/80">
             ACCESO ONLINE · PAGO SEGURO
           </p>
