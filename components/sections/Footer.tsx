@@ -62,7 +62,14 @@ export default function Footer() {
       </div>
 
       <div className="mt-20 pt-6 border-t border-canvas/40 flex flex-col md:flex-row items-center justify-between gap-4 font-narrow font-semibold text-[13px] tracking-[0.06em] uppercase text-canvas/75">
-        <span>The Creator Lab</span>
+        <a
+          href="https://www.instagram.com/thecreatorlab.mx/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:text-canvas transition-colors"
+        >
+          @thecreatorlab.mx
+        </a>
         <ul className="flex flex-wrap justify-center gap-6">
           <li>© 2026 Derechos Reservados</li>
           {/* Sin contenido aún: inerte a propósito */}
@@ -72,12 +79,12 @@ export default function Footer() {
           </li>
         </ul>
         <a
-          href="https://www.instagram.com/thecreatorlab.mx/"
+          href="https://sitionorte.com/"
           target="_blank"
           rel="noopener noreferrer"
           className="hover:text-canvas transition-colors"
         >
-          @thecreatorlab.mx
+          Web por Sitio Norte
         </a>
       </div>
     </footer>
