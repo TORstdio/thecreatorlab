@@ -65,6 +65,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="es"
+      data-scroll-behavior="smooth"
       suppressHydrationWarning
       className={`${archivo.variable} ${archivoBlack.variable} ${archivoNarrow.variable} ${instrumentSerif.variable} ${pinyonScript.variable} h-full antialiased`}
     >

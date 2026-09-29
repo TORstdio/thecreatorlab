@@ -110,7 +110,11 @@ const SECTIONS: Section[] = [
  * Trigger + modal de Términos y Condiciones con <dialog> nativo
  * (Esc para cerrar, foco atrapado, click en el fondo cierra).
  */
-export default function TermsModal() {
+export default function TermsModal({
+  triggerClassName = "uppercase hover:text-canvas transition-colors",
+}: {
+  triggerClassName?: string;
+}) {
   const dialogRef = useRef<HTMLDialogElement>(null);
 
   const open = () => {
@@ -126,7 +130,7 @@ export default function TermsModal() {
       <button
         type="button"
         onClick={open}
-        className="uppercase hover:text-canvas transition-colors"
+        className={triggerClassName}
       >
         Términos
       </button>

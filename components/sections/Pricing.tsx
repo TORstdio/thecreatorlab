@@ -1,5 +1,6 @@
 import { Check } from "@/components/icons";
 import CheckoutLink from "@/components/CheckoutLink";
+import { PRECIO, PRECIO_REGULAR } from "@/lib/oferta";
 
 const beneficios = [
   "4 instructores + invitados de la industria",
@@ -55,10 +56,10 @@ export default function Pricing() {
             PRECIO ESPECIAL
           </span>
           <p className="font-narrow font-bold text-sm tracking-[0.12em] text-canvas/80 line-through">
-            $249 USD
+            ${PRECIO_REGULAR} USD
           </p>
           <p className="font-display text-canvas text-[74px] leading-none">
-            $129
+            ${PRECIO}
             <span className="sr-only"> dólares</span>
           </p>
           <p className="font-narrow font-semibold text-sm tracking-[0.1em] text-canvas/85">

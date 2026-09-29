@@ -1,17 +1,8 @@
 "use client";
 
-import Image, { type StaticImageData } from "next/image";
+import Image from "next/image";
 import { useRef, useState } from "react";
-
-export type ModuleClass = {
-  tag: string;
-  title: string;
-  desc: string;
-  /** Foto para talks (círculo). */
-  avatar?: StaticImageData;
-  /** Inicial para placeholder de avatar cuando aún no hay foto. */
-  initial?: string;
-};
+import type { ModuleClass } from "@/lib/programa";
 
 type Props = {
   tag: string;
