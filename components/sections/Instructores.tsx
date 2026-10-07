@@ -5,6 +5,7 @@ import daniela from "@/public/instructores/daniela-palacios.webp";
 import eduardo from "@/public/instructores/eduardo-nunez.webp";
 import ilse from "@/public/instructores/ilse-guerra.webp";
 import paulina from "@/public/instructores/paulina-zarur.webp";
+import ana from "@/public/instructores/ana-trevino.webp";
 
 type Instructor = {
   name: string;
@@ -78,11 +79,12 @@ const instructores: Instructor[] = [
   },
   {
     name: "Ana Treviño",
-    summary: "Strategic Partner en Meta, cerca de creadores y del ecosistema digital.",
+    photo: ana,
+    summary: "+10 años en Influencer Marketing · hoy en Meta, impulsando la economía de los creadores.",
     highlights: [
-      "Strategic Partner en Meta desde 2022, trabajando de cerca con creadores y el ecosistema digital.",
-      "+2 años en Bitso, evolucionando de Brand & Comms hasta liderar estrategia de marca y Go-To-Market.",
-      "Experiencia en estrategia, comunicación y marketing para marcas y plataformas digitales.",
+      "Más de 10 años de experiencia en Influencer Marketing, recorriendo el ecosistema desde sus tres principales frentes: agencia, marca y plataforma.",
+      "Hoy, desde Meta, trabaja en la intersección entre la tecnología y la economía de los creadores.",
+      "Colabora con algunos de los principales creadores y agencias de Latinoamérica para impulsar el desarrollo de creadores.",
     ],
     photoBg: "bg-mint",
     fotoColor: "text-white/85",

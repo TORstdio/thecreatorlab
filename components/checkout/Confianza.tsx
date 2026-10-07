@@ -5,6 +5,7 @@ import gabriela from "@/public/instructores/avatar/gabriela-gonzalez.webp";
 import ilse from "@/public/instructores/avatar/ilse-guerra.webp";
 import paulina from "@/public/instructores/avatar/paulina-zarur.webp";
 import daniela from "@/public/instructores/avatar/daniela-palacios.webp";
+import ana from "@/public/instructores/avatar/ana-trevino.webp";
 import eduardo from "@/public/instructores/avatar/eduardo-nunez.webp";
 
 const garantias = [
@@ -57,6 +58,7 @@ const fotos = [
   [ilse, "Ilse Guerra"],
   [paulina, "Paulina P. Zarur"],
   [daniela, "Daniela Palacios"],
+  [ana, "Ana Treviño"],
   [eduardo, "Eduardo Nuñez"],
 ] as const;
 
@@ -65,7 +67,7 @@ export function InstructoresAvatares() {
     <div className="flex items-center gap-3.5">
       <ul className="flex shrink-0">
         {fotos.map(([src, nombre], i) => (
-          <li key={nombre} className={`${i > 0 ? "-ml-3" : ""} ${i === 5 ? "hidden lg:block" : ""}`}>
+          <li key={nombre} className={`${i > 0 ? "-ml-3" : ""} ${i >= 5 ? "hidden lg:block" : ""}`}>
             <Image
               src={src}
               alt={nombre}
