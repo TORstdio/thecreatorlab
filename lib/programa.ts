@@ -1,5 +1,6 @@
 import type { StaticImageData } from "next/image";
 import rossDiaz from "@/public/creators/ross-diaz.webp";
+import juan from "@/public/creators/juan.webp";
 
 export type ModuleClass = {
   tag: string;
@@ -159,7 +160,7 @@ export const modulos: Modulo[] = [
         tag: "TALK 2 · JUAN",
         title: "Cómo el PR te abre las puertas y es un antes y después en tu carrera",
         desc: "Descubre cómo el PR y las relaciones estratégicas pueden abrir nuevas oportunidades y transformar tu carrera como creador.",
-        initial: "J",
+        avatar: juan,
       },
     ],
   },
