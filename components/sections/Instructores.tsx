@@ -6,6 +6,7 @@ import eduardo from "@/public/instructores/eduardo-nunez.webp";
 import ilse from "@/public/instructores/ilse-guerra.webp";
 import paulina from "@/public/instructores/paulina-zarur.webp";
 import ana from "@/public/instructores/ana-trevino.webp";
+import natalia from "@/public/instructores/natalia-cabral.webp";
 
 type Instructor = {
   name: string;
@@ -104,8 +105,13 @@ const instructores: Instructor[] = [
   },
   {
     name: "Natalia Cabral",
-    summary: "[Bio por confirmar]",
-    highlights: [],
+    photo: natalia,
+    summary: "Creator Partner Manager en TikTok Latam · +5 años en datos y estrategia digital.",
+    highlights: [
+      "Más de 5 años de experiencia en análisis de datos y estrategias digitales para la creación y amplificación de contenido en TikTok.",
+      "Creator Partner Manager en el equipo de Creadores de TikTok Latam: onboarding y activación de talento, estrategias de contenido y crecimiento orgánico de cada cuenta.",
+      "Combina una sólida base analítica con gestión de relaciones y negociación para traducir datos en decisiones que impulsan a los creadores y al ecosistema de TikTok.",
+    ],
     photoBg: "bg-blue",
     fotoColor: "text-white/85",
   },

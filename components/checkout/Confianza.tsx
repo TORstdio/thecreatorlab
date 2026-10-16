@@ -6,6 +6,7 @@ import ilse from "@/public/instructores/avatar/ilse-guerra.webp";
 import paulina from "@/public/instructores/avatar/paulina-zarur.webp";
 import daniela from "@/public/instructores/avatar/daniela-palacios.webp";
 import ana from "@/public/instructores/avatar/ana-trevino.webp";
+import natalia from "@/public/instructores/avatar/natalia-cabral.webp";
 import eduardo from "@/public/instructores/avatar/eduardo-nunez.webp";
 
 const garantias = [
@@ -60,6 +61,7 @@ const fotos = [
   [daniela, "Daniela Palacios"],
   [ana, "Ana Treviño"],
   [eduardo, "Eduardo Nuñez"],
+  [natalia, "Natalia Cabral"],
 ] as const;
 
 export function InstructoresAvatares() {
@@ -79,7 +81,7 @@ export function InstructoresAvatares() {
         ))}
       </ul>
       <p className="text-[13px] leading-[1.4] text-muted">
-        Aprende con expertos de Peach Group, Meta y Another.
+        Aprende con expertos de Peach Group, Meta, TikTok y Another.
       </p>
     </div>
   );
