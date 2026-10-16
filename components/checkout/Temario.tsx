@@ -13,14 +13,15 @@ const NUM_STYLES = [
 
 const numero = (tag: string) => tag.replace("MOD. ", "");
 
-/** Las talks nombran a quien la da: "TALK 1 · ROSS DÍAZ" → "Ross Díaz: <título>". */
+/** Las talks nombran a quien la da: "TALK 1 · ROSS DÍAZ" → "Ross Díaz (@rossdiaz.co): <título>". */
 function claseLabel(c: ModuleClass) {
   const speaker = c.tag.split(" · ")[1];
   if (!speaker) return c.title;
   const nombre = speaker
     .toLowerCase()
     .replace(/(^|\s)\S/g, (s) => s.toUpperCase());
-  return `${nombre}: ${c.title}`;
+  const ig = c.ig ? ` (@${c.ig})` : "";
+  return `${nombre}${ig}: ${c.title}`;
 }
 
 function NumPill({ i, tag }: { i: number; tag: string }) {

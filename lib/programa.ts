@@ -10,6 +10,8 @@ export type ModuleClass = {
   avatar?: StaticImageData;
   /** Inicial para placeholder de avatar cuando aún no hay foto. */
   initial?: string;
+  /** Usuario de Instagram de quien da la talk (sin @). */
+  ig?: string;
 };
 
 export type Modulo = {
@@ -152,15 +154,17 @@ export const modulos: Modulo[] = [
     classes: [
       {
         tag: "TALK 1 · ROSS DÍAZ",
-        title: "Cómo construiste otra línea de negocio a partir de tu contenido",
+        title: "Cómo construir otra línea de negocio a partir de tu contenido",
         desc: "Conoce cómo llevar tu contenido más allá de redes y convertirlo en nuevas oportunidades.",
         avatar: rossDiaz,
+        ig: "rossdiaz.co",
       },
       {
         tag: "TALK 2 · JUAN",
         title: "Cómo el PR te abre las puertas y es un antes y después en tu carrera",
         desc: "Descubre cómo el PR y las relaciones estratégicas pueden abrir nuevas oportunidades y transformar tu carrera como creador.",
         avatar: juan,
+        ig: "quienesjuaan",
       },
     ],
   },

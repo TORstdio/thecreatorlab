@@ -120,6 +120,19 @@ export default function ModuleRow({
               <span className="flex flex-col gap-1">
                 <span className="font-narrow font-bold text-xs tracking-[0.16em] text-butter">
                   {c.tag}
+                  {c.ig && (
+                    <>
+                      {" · "}
+                      <a
+                        href={`https://instagram.com/${c.ig}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="normal-case tracking-normal underline underline-offset-2 hover:text-canvas"
+                      >
+                        @{c.ig}
+                      </a>
+                    </>
+                  )}
                 </span>
                 <span className="text-canvas font-semibold text-[16px] leading-snug">
                   {c.title}
