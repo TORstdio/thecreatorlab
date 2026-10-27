@@ -66,6 +66,7 @@ export default function Pricing() {
             USD · LANZAMIENTO
           </p>
           <CheckoutLink
+            target="_blank"
             data-cursor="purple"
             className="btn-hard mt-1.5 bg-butter text-ink border-2 border-ink rounded-full px-8 py-[15px] text-base font-bold shadow-[3px_3px_0_0_#1c1a17]"
           >

@@ -1,13 +1,9 @@
 "use client";
 
-import Script from "next/script";
 import { type ComponentPropsWithoutRef, type MouseEvent } from "react";
 
 const checkoutUrl = process.env.NEXT_PUBLIC_HOTMART_CHECKOUT_URL;
 const fallbackUrl = "#inscripcion";
-const widgetCheckoutUrl = checkoutUrl
-  ? `${checkoutUrl}${checkoutUrl.includes("?") ? "&" : "?"}checkoutMode=2`
-  : fallbackUrl;
 const attributionKeys = [
   "utm_source",
   "utm_medium",
@@ -34,8 +30,6 @@ function buildCheckoutUrl() {
       }
     });
 
-    url.searchParams.set("checkoutMode", "2");
-
     return url.toString();
   } catch {
     return checkoutUrl;
@@ -47,32 +41,41 @@ type CheckoutLinkProps = ComponentPropsWithoutRef<"a">;
 export default function CheckoutLink({
   children,
   onClick,
-  className,
+  target,
   ...props
 }: CheckoutLinkProps) {
   const handleClick = (event: MouseEvent<HTMLAnchorElement>) => {
     onClick?.(event);
 
-    if (event.defaultPrevented || !checkoutUrl) return;
+    const isPlainClick =
+      event.button === 0 &&
+      !event.metaKey &&
+      !event.ctrlKey &&
+      !event.shiftKey &&
+      !event.altKey;
 
-    event.currentTarget.href = buildCheckoutUrl();
+    if (event.defaultPrevented || !checkoutUrl || !isPlainClick) return;
+
+    event.preventDefault();
+
+    if (target === "_blank") {
+      window.open(buildCheckoutUrl(), "_blank", "noopener,noreferrer");
+      return;
+    }
+
+    window.location.assign(buildCheckoutUrl());
   };
 
   return (
-    <>
-      <Script
-        src="https://static.hotmart.com/checkout/widget.min.js"
-        strategy="afterInteractive"
-      />
-      <a
-        {...props}
-        className={`hotmart-fb hotmart__button-checkout ${className ?? ""}`.trim()}
-        href={widgetCheckoutUrl}
-        onClick={handleClick}
-        data-checkout-cta="true"
-      >
-        {children}
-      </a>
-    </>
+    <a
+      {...props}
+      href={checkoutUrl || fallbackUrl}
+      target={target}
+      rel={target === "_blank" ? "noopener noreferrer" : props.rel}
+      onClick={handleClick}
+      data-checkout-cta="true"
+    >
+      {children}
+    </a>
   );
 }
