@@ -1,9 +1,13 @@
 "use client";
 
-import { type ComponentPropsWithoutRef, type MouseEvent } from "react";
+import { useEffect, useState, type ComponentPropsWithoutRef, type MouseEvent } from "react";
+import { ensureHotmartPopup } from "@/lib/hotmartPopup";
 
 const checkoutUrl = process.env.NEXT_PUBLIC_HOTMART_CHECKOUT_URL;
 const fallbackUrl = "#inscripcion";
+const widgetCheckoutUrl = checkoutUrl
+  ? `${checkoutUrl}${checkoutUrl.includes("?") ? "&" : "?"}checkoutMode=2`
+  : fallbackUrl;
 const attributionKeys = [
   "utm_source",
   "utm_medium",
@@ -30,6 +34,8 @@ function buildCheckoutUrl() {
       }
     });
 
+    url.searchParams.set("checkoutMode", "2");
+
     return url.toString();
   } catch {
     return checkoutUrl;
@@ -41,37 +47,31 @@ type CheckoutLinkProps = ComponentPropsWithoutRef<"a">;
 export default function CheckoutLink({
   children,
   onClick,
-  target,
+  className,
   ...props
 }: CheckoutLinkProps) {
+  // Los UTMs se agregan al cargar (no al dar clic) porque la ventana de
+  // Hotmart lee el href antes que el onClick.
+  const [href, setHref] = useState(widgetCheckoutUrl);
+
+  useEffect(() => {
+    setHref(buildCheckoutUrl());
+    ensureHotmartPopup();
+  }, []);
+
   const handleClick = (event: MouseEvent<HTMLAnchorElement>) => {
     onClick?.(event);
 
-    const isPlainClick =
-      event.button === 0 &&
-      !event.metaKey &&
-      !event.ctrlKey &&
-      !event.shiftKey &&
-      !event.altKey;
+    if (event.defaultPrevented || !checkoutUrl) return;
 
-    if (event.defaultPrevented || !checkoutUrl || !isPlainClick) return;
-
-    event.preventDefault();
-
-    if (target === "_blank") {
-      window.open(buildCheckoutUrl(), "_blank", "noopener,noreferrer");
-      return;
-    }
-
-    window.location.assign(buildCheckoutUrl());
+    event.currentTarget.href = buildCheckoutUrl();
   };
 
   return (
     <a
       {...props}
-      href={checkoutUrl || fallbackUrl}
-      target={target}
-      rel={target === "_blank" ? "noopener noreferrer" : props.rel}
+      className={`hotmart-fb hotmart__button-checkout ${className ?? ""}`.trim()}
+      href={href}
       onClick={handleClick}
       data-checkout-cta="true"
     >
