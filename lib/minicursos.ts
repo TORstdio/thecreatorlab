@@ -3,8 +3,8 @@ import crece from "@/public/minicursos/crece.webp";
 import cobra from "@/public/minicursos/cobra.webp";
 import firma from "@/public/minicursos/firma.webp";
 
-/** Precio de cada minicurso (USD). Pendiente: en null se muestra "$XX". */
-export const PRECIO_MINICURSO: number | null = null;
+/** Precio de cada minicurso (USD), igual que en Hotmart. En null se muestra "$XX". */
+export const PRECIO_MINICURSO: number | null = 45;
 
 export const precioMinicurso = () =>
   PRECIO_MINICURSO === null ? "$XX" : `$${PRECIO_MINICURSO}`;
@@ -23,7 +23,7 @@ export type Minicurso = {
   acento: string;
   /** POR CONFIRMAR con el cliente: quién da las clases de cada curso. */
   instructores: string[];
-  /** Producto de Hotmart; sin URL el botón no lleva a ningún pago. */
+  /** Checkout de Hotmart del producto. La variable de entorno, si existe, tiene prioridad. */
   checkoutUrl?: string;
 };
 
@@ -36,7 +36,7 @@ export const minicursos: Minicurso[] = [
     portada: crece,
     acento: "bg-mint",
     instructores: ["Paulina P. Zarur", "Natalia Cabral"],
-    checkoutUrl: process.env.NEXT_PUBLIC_HOTMART_CRECE_URL,
+    checkoutUrl: process.env.NEXT_PUBLIC_HOTMART_CRECE_URL || "https://pay.hotmart.com/A108327752Y",
     clases: [
       {
         titulo: "En qué etapa estás como creador o creadora de contenido",
@@ -78,7 +78,7 @@ export const minicursos: Minicurso[] = [
     portada: cobra,
     acento: "bg-butter",
     instructores: ["Ilse Guerra", "Daniela Palacios", "Ana Treviño"],
-    checkoutUrl: process.env.NEXT_PUBLIC_HOTMART_COBRA_URL,
+    checkoutUrl: process.env.NEXT_PUBLIC_HOTMART_COBRA_URL || "https://pay.hotmart.com/X108327776I",
     clases: [
       {
         titulo: "Monetiza tu pasión: reglas para vender tu contenido",
@@ -111,7 +111,7 @@ export const minicursos: Minicurso[] = [
     portada: firma,
     acento: "bg-pink",
     instructores: ["Gabriela González", "Carolina Sandoval", "Eduardo Nuñez"],
-    checkoutUrl: process.env.NEXT_PUBLIC_HOTMART_FIRMA_URL,
+    checkoutUrl: process.env.NEXT_PUBLIC_HOTMART_FIRMA_URL || "https://pay.hotmart.com/R108327795R",
     clases: [
       {
         titulo: "No firmes a ciegas: contratos, exclusividad y cómo protegerte",
