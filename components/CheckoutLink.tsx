@@ -3,11 +3,15 @@
 import { useEffect, useState, type ComponentPropsWithoutRef, type MouseEvent } from "react";
 import { ensureHotmartPopup } from "@/lib/hotmartPopup";
 
-const checkoutUrl = process.env.NEXT_PUBLIC_HOTMART_CHECKOUT_URL;
+const defaultCheckoutUrl = process.env.NEXT_PUBLIC_HOTMART_CHECKOUT_URL;
 const fallbackUrl = "#inscripcion";
-const widgetCheckoutUrl = checkoutUrl
-  ? `${checkoutUrl}${checkoutUrl.includes("?") ? "&" : "?"}checkoutMode=2`
-  : fallbackUrl;
+
+function widgetUrl(checkoutUrl?: string) {
+  return checkoutUrl
+    ? `${checkoutUrl}${checkoutUrl.includes("?") ? "&" : "?"}checkoutMode=2`
+    : fallbackUrl;
+}
+
 const attributionKeys = [
   "utm_source",
   "utm_medium",
@@ -20,7 +24,7 @@ const attributionKeys = [
   "src",
 ];
 
-function buildCheckoutUrl() {
+function buildCheckoutUrl(checkoutUrl?: string) {
   if (!checkoutUrl) return fallbackUrl;
 
   try {
@@ -42,9 +46,13 @@ function buildCheckoutUrl() {
   }
 }
 
-type CheckoutLinkProps = ComponentPropsWithoutRef<"a">;
+type CheckoutLinkProps = ComponentPropsWithoutRef<"a"> & {
+  /** Producto de Hotmart; por defecto, el curso completo. */
+  checkoutUrl?: string;
+};
 
 export default function CheckoutLink({
+  checkoutUrl = defaultCheckoutUrl,
   children,
   onClick,
   className,
@@ -52,19 +60,19 @@ export default function CheckoutLink({
 }: CheckoutLinkProps) {
   // Los UTMs se agregan al cargar (no al dar clic) porque la ventana de
   // Hotmart lee el href antes que el onClick.
-  const [href, setHref] = useState(widgetCheckoutUrl);
+  const [href, setHref] = useState(widgetUrl(checkoutUrl));
 
   useEffect(() => {
-    setHref(buildCheckoutUrl());
+    setHref(buildCheckoutUrl(checkoutUrl));
     ensureHotmartPopup();
-  }, []);
+  }, [checkoutUrl]);
 
   const handleClick = (event: MouseEvent<HTMLAnchorElement>) => {
     onClick?.(event);
 
     if (event.defaultPrevented || !checkoutUrl) return;
 
-    event.currentTarget.href = buildCheckoutUrl();
+    event.currentTarget.href = buildCheckoutUrl(checkoutUrl);
   };
 
   return (

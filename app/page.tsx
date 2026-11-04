@@ -6,6 +6,7 @@ import Logros from "@/components/sections/Logros";
 import Programa from "@/components/sections/Programa";
 import Instructores from "@/components/sections/Instructores";
 import Pricing from "@/components/sections/Pricing";
+import Minicursos from "@/components/sections/Minicursos";
 import Faq from "@/components/sections/Faq";
 import Footer from "@/components/sections/Footer";
 import ScrollFx from "@/components/ScrollFx";
@@ -23,6 +24,7 @@ export default function Home() {
         <Programa />
         <Instructores />
         <Pricing />
+        <Minicursos />
         <Faq />
       </main>
       <Footer />

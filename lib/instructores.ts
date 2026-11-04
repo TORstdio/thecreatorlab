@@ -1,0 +1,117 @@
+import carolina from "@/public/instructores/carolina-sandoval.webp";
+import gabriela from "@/public/instructores/gabriela-gonzalez.webp";
+import daniela from "@/public/instructores/daniela-palacios.webp";
+import eduardo from "@/public/instructores/eduardo-nunez.webp";
+import ilse from "@/public/instructores/ilse-guerra.webp";
+import paulina from "@/public/instructores/paulina-zarur.webp";
+import ana from "@/public/instructores/ana-trevino.webp";
+import natalia from "@/public/instructores/natalia-cabral.webp";
+
+export type Instructor = {
+  name: string;
+  summary: string;
+  highlights: string[];
+  photoBg: string;
+  fotoColor: string;
+  photo?: import("next/image").StaticImageData;
+};
+
+export const instructores: Instructor[] = [
+  {
+    name: "Carolina Sandoval",
+    photo: carolina,
+    summary: "Socia fundadora de Peach Group · +8 años en Influencer Marketing.",
+    highlights: [
+      "+8 años de experiencia en Influencer Marketing y en la profesionalización de la Creator Economy.",
+      "Socia fundadora de Peach Group y Directora de Administración y Finanzas.",
+      "Lidera estrategias financieras, tecnológicas y operativas que combinan data, creatividad e innovación.",
+    ],
+    photoBg: "bg-blue",
+    fotoColor: "text-white/85",
+  },
+  {
+    name: "Gabriela González",
+    photo: gabriela,
+    summary: "+9 años en derecho corporativo aplicado al Influencer Marketing.",
+    highlights: [
+      "+9 años de experiencia en el área legal, con especialización en derecho corporativo.",
+      "Asesora estratégicamente a empresas para proteger y fortalecer sus operaciones.",
+      "Experiencia legal aplicada a proyectos, contratos y operaciones dentro de Influencer Marketing.",
+    ],
+    photoBg: "bg-pink",
+    fotoColor: "text-white/85",
+  },
+  {
+    name: "Ilse Guerra",
+    photo: ilse,
+    summary: "+2,000 campañas negociadas entre marcas y creadores.",
+    highlights: [
+      "Socia fundadora de Peach Group, especializada en negociación entre marcas y creadores.",
+      "Ha negociado y liderado +2,000 campañas de Influencer Marketing.",
+      "Experta en encontrar el punto medio para construir acuerdos que funcionen para marcas y talentos.",
+    ],
+    photoBg: "bg-mint",
+    fotoColor: "text-white/85",
+  },
+  {
+    name: "Paulina P. Zarur",
+    photo: paulina,
+    summary: "+10 años en Marketing: Dior, L'Oréal, Netflix, Coca-Cola.",
+    highlights: [
+      "+10 años de experiencia en Marketing y +6 años especializada en Creator Economy.",
+      "Ha trabajado en Lala y Rappi, y con marcas como Dior, L'Oréal, Netflix, Amazon, Mercado Libre y Coca-Cola.",
+      "Socia de Peach Group, especializada en desarrollar y posicionar talentos referentes dentro de la industria.",
+    ],
+    photoBg: "bg-butter",
+    fotoColor: "text-ink/60",
+  },
+  {
+    name: "Daniela Palacios",
+    photo: daniela,
+    summary: "Talent Agent Leader en Peach Group · campañas end-to-end para marcas globales.",
+    highlights: [
+      "5 años de experiencia en Influencer Marketing, trabajando tanto con marcas como con talentos.",
+      "Ha desarrollado campañas end-to-end para Natura, Jumex, Beiersdorf, Mondelez, Unilever, Lenovo y Betterware.",
+      "Talent Agent Leader en Peach Group, liderando el desarrollo de talentos, campañas y proyectos personales.",
+    ],
+    photoBg: "bg-purple",
+    fotoColor: "text-white/85",
+  },
+  {
+    name: "Ana Treviño",
+    photo: ana,
+    summary: "+10 años en Influencer Marketing · hoy en Meta, impulsando la economía de los creadores.",
+    highlights: [
+      "Más de 10 años de experiencia en Influencer Marketing, recorriendo el ecosistema desde sus tres principales frentes: agencia, marca y plataforma.",
+      "Hoy, desde Meta, trabaja en la intersección entre la tecnología y la economía de los creadores.",
+      "Colabora con algunos de los principales creadores y agencias de Latinoamérica para impulsar el desarrollo de creadores.",
+    ],
+    photoBg: "bg-mint",
+    fotoColor: "text-white/85",
+  },
+  {
+    name: "Eduardo Nuñez",
+    photo: eduardo,
+    summary: "Dirige Influencer Marketing en Another, Mejor Agencia de IM en México.",
+    highlights: [
+      "Lleva más de 10 años trabajando entre briefs, campañas y creadores.",
+      "Ha colaborado con marcas como TikTok, HBO Max, P&G, Fashion Nova, Hasbro y Miniso, además de trabajar con creadores de distintos países de Latinoamérica.",
+      "Dirige Influencer Marketing en Another, reconocida dos años consecutivos como Mejor Agencia de Influencer Marketing en México.",
+      "Formó parte de los Eliot Awards, ha hecho investigaciones sobre la Creator Economy y compartido su experiencia en foros de la industria.",
+    ],
+    photoBg: "bg-pink",
+    fotoColor: "text-white/85",
+  },
+  {
+    name: "Natalia Cabral",
+    photo: natalia,
+    summary: "Creator Partner Manager en TikTok Latam · +5 años en datos y estrategia digital.",
+    highlights: [
+      "Más de 5 años de experiencia en análisis de datos y estrategias digitales para la creación y amplificación de contenido en TikTok.",
+      "Creator Partner Manager en el equipo de Creadores de TikTok Latam: onboarding y activación de talento, estrategias de contenido y crecimiento orgánico de cada cuenta.",
+      "Combina una sólida base analítica con gestión de relaciones y negociación para traducir datos en decisiones que impulsan a los creadores y al ecosistema de TikTok.",
+    ],
+    photoBg: "bg-blue",
+    fotoColor: "text-white/85",
+  },
+];

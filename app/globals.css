@@ -301,3 +301,23 @@ details.faq-item[open] .faq-plus {
     animation-duration: 0.01ms !important;
   }
 }
+
+/* ---------- Hero de minicursos: la portada desenfocada como fondo ---------- */
+
+.blend-fondo {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: #1a1fb0;
+}
+
+.blend-fondo img {
+  position: absolute;
+  inset: -15%;
+  width: 130%;
+  height: 130%;
+  max-width: none;
+  object-fit: cover;
+  filter: blur(70px) saturate(1.35);
+  opacity: 0.9;
+}
