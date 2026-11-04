@@ -4,9 +4,14 @@ import { minicursos } from "@/lib/minicursos";
 
 const curso = minicursos.find((m) => m.slug === "firma")!;
 
+const title = "Firma — The Creator Playbook";
+const description = `${curso.promesa}. ${curso.clases.length} clases en ${curso.duracion}, 100% online.`;
+
 export const metadata: Metadata = {
-  title: "Firma — The Creator Playbook",
-  description: `${curso.promesa}. ${curso.clases.length} clases en ${curso.duracion}, 100% online.`,
+  title,
+  description,
+  openGraph: { title, description, locale: "es_MX", type: "website", siteName: "The Creator Lab", url: "/firma" },
+  twitter: { card: "summary_large_image", title, description },
 };
 
 export default function Page() {

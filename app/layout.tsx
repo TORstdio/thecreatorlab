@@ -45,6 +45,7 @@ const pinyonScript = Pinyon_Script({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://thecreatorlab.mx"),
   title: "The Creator Playbook — The Creator Lab",
   description:
     "Crear contenido es solo el comienzo. Aprende a definir tu valor, cobrar, entender tus métricas y trabajar mejor con marcas. 7 módulos, 17 clases, 100% online.",
@@ -54,7 +55,9 @@ export const metadata: Metadata = {
       "Si quieres construir una carrera como creador, empieza entendiendo cómo funciona la industria. From creator to career.",
     locale: "es_MX",
     type: "website",
+    siteName: "The Creator Lab",
   },
+  twitter: { card: "summary_large_image" },
 };
 
 export const viewport: Viewport = {
